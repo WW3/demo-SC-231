@@ -1,14 +1,121 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>demo-SC-231</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>WCAG 2.3.1 — Three flash violations explained</title>
+<style>
+:root{--ink:#182b3c;--muted:#435b6f;--blue:#135e81;--line:#bcccd7;--paper:#fff;--wash:#edf4f7;--fail:#933327;--good:#195946}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:1.125rem/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--blue);text-underline-offset:.2em}a:hover{text-decoration-thickness:3px}a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #985000;outline-offset:5px}.skip{position:absolute;top:10px;left:10px;padding:12px;background:#fff;z-index:3;transform:translateY(-200%)}.skip:focus{transform:none}.wrap{max-width:1160px;margin:auto;padding:0 40px}header{background:var(--wash);border-bottom:1px solid var(--line);padding:46px 0 30px}.eyebrow{font-size:.9rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}h1{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.12;letter-spacing:-.035em;max-width:850px;margin:12px 0 22px}h2{font-size:clamp(1.5rem,3vw,2rem);line-height:1.25;margin:8px 0 18px}h3{font-size:1.1rem;margin:0 0 10px}p{margin:0 0 16px}.intro{max-width:850px;font-size:1.2rem}.note{border-left:4px solid var(--blue);padding:12px 18px;background:#fff;margin-top:22px}.note p{margin:0}nav{display:flex;flex-wrap:wrap;gap:12px 26px;margin-top:24px}nav a{font-weight:650}main{padding-top:36px}.rule{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:24px 0 34px;border-bottom:1px solid var(--line)}.rule p{margin:0}.example{padding:40px 0;border-bottom:1px solid var(--line);scroll-margin-top:20px}.section-top{display:flex;gap:20px;align-items:baseline;justify-content:space-between}.number{font-size:.9rem;font-weight:750;letter-spacing:.1em;color:var(--muted)}.verdict{color:var(--fail);font-size:1rem;font-weight:750;white-space:nowrap}.layout{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,1fr);gap:32px}.illustration{background:var(--wash);border:1px solid var(--line);border-radius:10px;padding:20px;min-width:0}.label{font-size:.9rem;color:var(--muted);font-weight:650;margin-bottom:12px}.frames{display:grid;grid-template-columns:1fr 1fr;gap:14px}.frame{border:1px solid #8193a2;border-radius:5px;min-height:135px;padding:18px 12px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;line-height:1.3}.frame strong{font-size:1.5rem}.black{background:#000;color:#fff}.white{background:#fff;color:#000}.gray{background:#333;color:#fff}.red{background:#f00;color:#000}.frame small{margin-top:12px;font:0.85rem/1.4 ui-monospace,monospace}.states-caption{font-size:.95rem;margin:12px 0 0}.metrics{display:flex;gap:12px 30px;flex-wrap:wrap;margin:0 0 18px}.metrics strong{font-size:1.65rem;display:block;line-height:1.15}.metrics span{font-size:.95rem;color:var(--muted)}.why{padding:12px 0 0}.fix{background:#edf6f2;border-left:4px solid var(--good);padding:12px 16px;font-size:1rem}.fix p{margin:0}.clarification{font-size:1rem;color:var(--muted)}figure{margin:20px 0 0}figcaption{font-size:.95rem;color:var(--muted);margin-top:8px}.chart{width:100%;height:auto;display:block;overflow:visible}.chart text{font-family:system-ui,sans-serif;fill:var(--muted);font-size:15px}.chart .pulse{fill:none;stroke:var(--blue);stroke-width:3;stroke-linejoin:round}.chart .axis{stroke:#7e93a3;stroke-width:1}.chart .grid{stroke:#c5d2dc;stroke-width:1}.chart .selected{fill:#d8e9f2;stroke:var(--blue);stroke-width:2}.video-still{height:155px;background:#203f56;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:5px;text-align:center;position:relative;overflow:hidden}.stage{display:flex;align-items:flex-end;gap:10px;height:60px;margin-right:22px}.stage i{display:block;width:12px;background:#b4cbd9;height:40px}.stage i:nth-child(2){height:60px}.stage i:nth-child(3){height:30px}.video-still strong{font-size:1.5rem}.video-still small{display:block;font-size:.95rem}.window-control{margin:20px 0 0}.window-control label{display:block;font-weight:700;font-size:1rem}input[type=range]{display:block;width:100%;min-height:44px;accent-color:var(--blue);margin:2px 0}.window-result{margin:8px 0 0;font-size:1rem}.result-number{font-weight:750}.table-scroll{overflow-x:auto;margin-top:16px}table{border-collapse:collapse;width:100%;font-size:.95rem}caption{text-align:left;font-weight:700;margin-bottom:8px}th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:var(--wash)}details{margin:24px 0 0;font-size:1rem}summary{font-weight:700;cursor:pointer;padding:8px 0}details p{margin-top:12px}.thresholds{padding:38px 0}.threshold-layout{display:grid;grid-template-columns:280px 1fr;gap:30px}.area-box{width:100%;aspect-ratio:341/256;background:var(--wash);border:2px solid var(--blue);position:relative;display:flex;align-items:flex-end;justify-content:center;padding:14px}.area-quarter{position:absolute;top:0;left:0;width:50%;height:50%;background:#c6dce8;border-right:2px dashed var(--blue);border-bottom:2px dashed var(--blue);display:grid;place-items:center;font-weight:750}.area-caption{font-size:.9rem;color:var(--muted);margin-top:8px}.sources{padding:28px 0;border-top:1px solid var(--line);font-size:1rem}.sources ul{padding-left:22px}.sources li{margin-bottom:8px}footer{background:var(--wash);padding:20px 0;font-size:.95rem;color:var(--muted)}code{font-size:.95em;overflow-wrap:anywhere}.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}@media(max-width:760px){.wrap{padding:0 20px}header{padding-top:28px}.layout,.rule,.threshold-layout{grid-template-columns:1fr}.layout{gap:22px}.threshold-layout{gap:20px}.area-box{max-width:280px}.section-top{display:block}.verdict{margin-bottom:12px}.illustration{padding:16px}.example{padding:30px 0}.frame{min-height:120px;padding:14px 8px}.frame strong{font-size:1.25rem}}@media print{body{font-size:11pt}.wrap{padding:0 16px}header{padding:16px 0}.skip,nav,.window-control{display:none}.layout{grid-template-columns:1fr 1fr}details p{display:block}a{color:inherit}.example{break-inside:avoid;padding:20px 0}.illustration,.frame{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
 </head>
 <body>
-  <main>
-    <h1>demo-SC-231</h1>
-    <p>Placeholder page. Content coming soon.</p>
-  </main>
+<a class="skip" href="#main">Skip to examples</a>
+<header><div class="wrap">
+<div class="eyebrow">WCAG 2.2 · Success Criterion 2.3.1 · Level A</div>
+<h1>Three flash violations,<br>without the flashing.</h1>
+<p class="intro">A strobe sale banner, a saturated-red alert, and a video with clustered light flashes. See the states, timing, and area that make each hypothetical example fail.</p>
+<div class="note"><p><strong>Static teaching page.</strong> All previews and waveforms are still illustrations. The timeline control moves a measurement window; it never plays flashing content.</p></div>
+<nav aria-label="On this page"><a href="#banner">1. Sale banner</a><a href="#alert">2. Red alert</a><a href="#video">3. Hero video</a><a href="#thresholds">Area threshold</a></nav>
+</div></header>
+<main id="main" class="wrap">
+<section class="rule" aria-label="How to read these examples">
+<div><h2>Count complete flashes</h2><p>Dark → light → dark is one flash: two opposing transitions. Five cycles per second means five flashes, not five individual color changes.</p></div>
+<div><h2>Evaluate every one-second window</h2><p>At most three flashes in <em>any</em> one-second period meets the frequency condition. Above that, evaluate the general/red flash definitions and area threshold. The examples below exceed those thresholds.</p></div>
+</section>
+<article class="example" id="banner">
+<div class="section-top"><div class="number">EXAMPLE 01</div><div class="verdict">Fails · General flash threshold</div></div>
+<h2>Rapid strobe “FLASH SALE” banner</h2>
+<div class="layout">
+<div class="illustration">
+<p class="label">Two still states of the same full-screen promotion</p>
+<div class="frames"><div class="frame black"><strong>FLASH<br>SALE</strong><small>#000000</small></div><div class="frame white"><strong>FLASH<br>SALE</strong><small>#FFFFFF</small></div></div>
+<p class="states-caption">The hypothetical banner alternates these states at 5 Hz. These thumbnails stay still.</p>
+<figure><svg class="chart" viewBox="0 0 460 135" role="img" aria-labelledby="wave1-title wave1-desc"><title id="wave1-title">Five general flashes in one second</title><desc id="wave1-desc">Five equal dark-light-dark cycles between zero and one second. Each complete cycle lasts 0.2 seconds.</desc><path class="grid" d="M40 25H440 M40 80H440"/><text x="2" y="30">Light</text><text x="2" y="85">Dark</text><path class="pulse" d="M40 80H60V25H100V80H140V25H180V80H220V25H260V80H300V25H340V80H380V25H420V80H440"/><path class="axis" d="M40 98H440"/><text x="40" y="122">0 s</text><text x="218" y="122">0.5 s</text><text x="415" y="122">1 s</text></svg><figcaption>Time is drawn horizontally. Five peaks represent five complete flash pairs, not live playback.</figcaption></figure>
+</div>
+<div>
+<div class="metrics"><div><strong>5</strong><span>flashes / second</span></div><div><strong>Full screen</strong><span>flashing area</span></div></div>
+<p>An e-commerce homepage opens with a promotional banner occupying the viewport and switching between black and white.</p>
+<p class="why"><strong>Why it fails:</strong> five complete cycles fit in one second. Black-to-white changes clearly meet the general-flash luminance definition, and the full-screen flashing area exceeds the area exception.</p>
+<p class="clarification">Full width alone does not prove failure: height and the area actually flashing matter. Here, the full-screen assumption makes the area condition explicit.</p>
+<div class="fix"><p><strong>Safer replacement:</strong> keep the sale banner static. If flashing is retained, ensure no one-second window contains more than three flashes, or verify that it is below the applicable thresholds.</p></div>
+</div></div>
+</article>
+<article class="example" id="alert">
+<div class="section-top"><div class="number">EXAMPLE 02</div><div class="verdict">Fails · Red flash threshold</div></div>
+<h2>Saturated-red emergency alert</h2>
+<div class="layout">
+<div class="illustration">
+<p class="label">Two still states of a large warning panel</p>
+<div class="frames"><div class="frame gray"><strong>SEVERE<br>WEATHER</strong><small>#333333</small></div><div class="frame red"><strong>SEVERE<br>WEATHER</strong><small>#FF0000</small></div></div>
+<p class="states-caption">One flash = gray → saturated red → gray. Four complete cycles occur in one second.</p>
+<figure><svg class="chart" viewBox="0 0 460 135" role="img" aria-labelledby="wave2-title wave2-desc"><title id="wave2-title">Four red flashes in one second</title><desc id="wave2-desc">Four equal gray-red-gray cycles between zero and one second. Each complete cycle lasts 0.25 seconds.</desc><path class="grid" d="M55 25H440 M55 80H440"/><text x="2" y="30">Red</text><text x="2" y="85">Gray</text><path class="pulse" d="M55 80H79V25H127V80H175V25H223V80H271V25H319V80H367V25H415V80H440"/><path class="axis" d="M55 98H440"/><text x="55" y="122">0 s</text><text x="222" y="122">0.5 s</text><text x="415" y="122">1 s</text></svg><figcaption>Saturated red is evaluated with its own flash definition; the frequency limit remains three flashes.</figcaption></figure>
+</div>
+<div>
+<div class="metrics"><div><strong>4</strong><span>red flashes / second</span></div><div><strong>400 × 280</strong><span>reference panel size, pixels</span></div></div>
+<p>A severe-weather portal uses a large animated warning panel. Its background switches between dark gray and pure red.</p>
+<p class="why"><strong>Why it fails:</strong> four qualifying red flash pairs occur in a second. Assume the entire 400 × 280 panel flashes at WCAG’s 1024 × 768 reference rendering: it can fill a 341 × 256 assessment rectangle and exceeds its 25% area limit.</p>
+<p class="clarification">A tiny flashing red icon is not automatically a failure of 2.3.1. This example specifies a large panel. Red has a separate transition test, rather than a lower numerical flash-count limit. This color pair also qualifies as a general flash.</p>
+<div class="fix"><p><strong>Safer replacement:</strong> use a steady warning panel with a clear heading and severity text. Color can reinforce the message without flashing.</p></div>
+<details><summary>Technical note: saturated-red transitions</summary><p>WCAG 2.2 describes a working test using R/(R + G + B) ≥ 0.8 for one state and a CIE 1976 UCS chromaticity difference &gt; 0.2 between states. For sRGB #FF0000 and neutral #333333, the ratio is 1 for red and the chromaticity difference is approximately 0.259.</p></details>
+</div></div>
+</article>
+<article class="example" id="video">
+<div class="section-top"><div class="number">EXAMPLE 03</div><div class="verdict">Fails · General flash threshold</div></div>
+<h2>Auto-playing hero video with clustered flashes</h2>
+<div class="layout">
+<div class="illustration">
+<p class="label">Still illustration of a media portal’s video header</p>
+<div class="video-still"><div class="stage" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><strong>LIVE SESSION</strong><small>Music-video hero · static poster</small></div></div>
+<figure><svg id="video-chart" class="chart" viewBox="0 0 460 145" role="img" aria-labelledby="wave3-title wave3-desc"><title id="wave3-title">Six flashes over two seconds, with four clustered in the first second</title><desc id="wave3-desc">Complete flash pairs occur from 0.10 to 0.16, 0.30 to 0.36, 0.50 to 0.56, 0.70 to 0.76, 1.30 to 1.36, and 1.70 to 1.76 seconds. The selected one-second window is shaded. Timing is also listed in the table.</desc><rect id="window-rect" class="selected" x="40" y="12" width="200" height="87" rx="4"/><path class="grid" d="M40 25H440 M40 80H440"/><path class="pulse" d="M40 80H60V25H72V80H100V25H112V80H140V25H152V80H180V25H192V80H300V25H312V80H380V25H392V80H440"/><path class="axis" d="M40 108H440"/><text x="40" y="133">0 s</text><text x="128" y="133">0.5 s</text><text x="228" y="133">1 s</text><text x="328" y="133">1.5 s</text><text x="415" y="133">2 s</text></svg><figcaption>The shaded region is a one-second measurement window. Four complete flashes fit in the initial window.</figcaption></figure>
+<div class="window-control" id="window-control" hidden><label for="window-start">Move the one-second measurement window</label><input id="window-start" type="range" min="0" max="1" step="0.05" value="0" aria-describedby="window-help window-result" aria-valuetext="0.00 to 1.00 seconds; 4 complete flash pairs"><p id="window-help" class="clarification">Use arrow keys to adjust by 0.05 seconds. Only the chart’s shaded region changes.</p></div>
+<p id="window-result" class="window-result" role="status">Window <strong>0.00–1.00 s</strong>: <span class="result-number">4 complete flash pairs</span> — above the frequency limit.</p>
+</div>
+<div>
+<div class="metrics"><div><strong>6 in 2 s</strong><span>average: 3 flashes / second</span></div><div><strong>4 in 1 s</strong><span>peak window: failure</span></div></div>
+<p>A media portal automatically plays a large hero video with high-contrast lighting effects. In this hypothetical sequence, each flash changes most of the video from a near-black scene to near-white and back.</p>
+<p class="why"><strong>Why it fails:</strong> the 0–1 second window contains four general flashes over an area exceeding the exception. Averaging six flashes across two seconds conceals the violating burst.</p>
+<p class="clarification">Missing pause controls do not establish a 2.3.1 failure, and adding pause controls does not fix excessive flashing. The flash thresholds determine this failure.</p>
+<div class="fix"><p><strong>Safer replacement:</strong> remove or edit the burst and verify every one-second window. A static hero poster avoids flashing; player controls address additional usability needs.</p></div>
+<div class="table-scroll"><table><caption>Illustrative flash-pair timing</caption><thead><tr><th scope="col">Flash</th><th scope="col">Bright transition</th><th scope="col">Return to dark</th></tr></thead><tbody><tr><th scope="row">1</th><td>0.10 s</td><td>0.16 s</td></tr><tr><th scope="row">2</th><td>0.30 s</td><td>0.36 s</td></tr><tr><th scope="row">3</th><td>0.50 s</td><td>0.56 s</td></tr><tr><th scope="row">4</th><td>0.70 s</td><td>0.76 s</td></tr><tr><th scope="row">5</th><td>1.30 s</td><td>1.36 s</td></tr><tr><th scope="row">6</th><td>1.70 s</td><td>1.76 s</td></tr></tbody></table></div>
+</div></div>
+</article>
+<section class="thresholds" id="thresholds">
+<h2>The area exception is local to the visual field</h2>
+<div class="threshold-layout"><figure style="margin:0"><div class="area-box" role="img" aria-label="A 341 by 256 reference rectangle, with one quarter of its area shaded"><div class="area-quarter">25%</div><span>341 × 256 reference pixels</span></div><figcaption class="area-caption">Schematic, scaled to fit. The quarter-area can have any shape.</figcaption></figure><div>
+<p>The normative area condition is no more than 0.006 steradians of concurrent flashes within any 10-degree visual field. WCAG’s reference approximation uses a 341 × 256 pixel rectangle at a 1024 × 768 rendering.</p>
+<p>One quarter of that rectangle is <strong>21,824 square pixels</strong>. Assess the flashing area <em>inside any placement</em> of the rectangle—not a quarter of the entire screen. A large bounding box does not prove that all of its pixels flash.</p>
+<p class="clarification">These are constructed failure scenarios, not analyzed media files. For actual video, measure qualifying transitions, timing, and concurrently flashing area at the relevant display size. The reference calculation is an approximation, not a universal CSS size allowance.</p>
+</div></div>
+</section>
+<section class="sources" aria-labelledby="sources-title"><h2 id="sources-title">References and verification</h2>
+<ul><li><a href="https://www.w3.org/TR/WCAG22/#three-flashes-or-below-threshold">WCAG 2.2: SC 2.3.1</a> and <a href="https://www.w3.org/TR/WCAG22/#dfn-general-flash-and-red-flash-thresholds">normative flash definitions</a>.</li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold.html">W3C Understanding 2.3.1</a>: rationale, red-flash calculations, and why stopping a flash is insufficient.</li><li><a href="https://www.w3.org/WAI/WCAG22/Techniques/general/G176">W3C Technique G176</a>: the small-area reference calculation.</li><li>Media analysis resources listed by W3C: <a href="https://trace.umd.edu/peat/">PEAT</a> and <a href="https://www.hardingfpa.com/">Harding FPA</a>. No analysis with either tool was performed for this illustration.</li></ul>
+</section>
+</main>
+<footer><div class="wrap">Three hypothetical failures · Static previews · Works offline · No flashing playback</div></footer>
+<script>
+(() => {
+  const control = document.getElementById('window-start');
+  const result = document.getElementById('window-result');
+  const rect = document.getElementById('window-rect');
+  const pairs = [[.10,.16],[.30,.36],[.50,.56],[.70,.76],[1.30,1.36],[1.70,1.76]];
+  const update = () => {
+    const start = Number(control.value), end = start + 1;
+    // The control counts full modeled pairs contained in the window. It is not a media analyzer.
+    const count = pairs.filter(([a,b]) => a >= start - 1e-9 && b <= end + 1e-9).length;
+    rect.setAttribute('x', String(40 + start * 200));
+    const range = start.toFixed(2) + '–' + end.toFixed(2) + ' s';
+    const suffix = count > 3 ? 'above the frequency limit.' : 'within the frequency limit here; the clip still fails in another window.';
+    result.replaceChildren();
+    result.append('Window ');
+    const span = document.createElement('strong'); span.textContent = range; result.append(span, ': ');
+    const n = document.createElement('span'); n.className = 'result-number'; n.textContent = count + ' complete flash pairs'; result.append(n, ' — ' + suffix);
+    control.setAttribute('aria-valuetext', start.toFixed(2) + ' to ' + end.toFixed(2) + ' seconds; ' + count + ' complete flash pairs');
+  };
+  control.addEventListener('input', update);
+  document.getElementById('window-control').hidden = false;
+})();
+</script>
 </body>
 </html>
